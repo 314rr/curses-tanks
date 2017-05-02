@@ -135,10 +135,7 @@ int main(int argc, char * argv[])
 			break;
 
 		case 10:
-		case KEY_ENTER:
-#if defined(WIN32)
-		case PADENTER:
-#endif
+		case ' ':
 			Shoot(g, players, turn);
 			turn = 1 - turn;
 			break;
