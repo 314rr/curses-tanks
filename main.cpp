@@ -50,6 +50,8 @@ void DrawScreen(Ground & g, Player * players, int turn)
 
 void Shoot(Ground & g, Player * players, int turn)
 {
+
+	int tanky, tankx;
 	double angle = players[turn].angle / 180.0 * PI;
 	double y_component = sin(angle) * players[turn].power * 0.2;
 	double x_component = cos(angle) * players[turn].power * 0.2;
@@ -78,10 +80,17 @@ void Shoot(Ground & g, Player * players, int turn)
 			MySleep(50);
 			continue;
 		}
-	//	if (pNy >= LINES - 2)
-	//		break;
+		//	if (pNy >= LINES - 2)
+		//		break;
 		if (pNy > g.ground.at((int)pNx))
+		{
+			getyx(stdscr,tanky,tankx);
+			if (players[1].Hit(tankx, g))
+			{
+
+			}
 			break;
+		}
 
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');

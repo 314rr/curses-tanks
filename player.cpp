@@ -62,6 +62,18 @@ void Player::AngleDown()
 		angle = 0.0;
 }
 
+bool Player::Hit(int column, Ground & g)
+{
+	bool retval;
+	if (g.ground.at(col) == column)
+	{
+		retval = true;
+	}
+
+
+	return retval;
+}
+
 void Player::DrawSettings(int turn)
 {
 	bool my_turn = (turn == 0 && s == LEFT) || (turn == 1 && s == RIGHT);
@@ -89,3 +101,4 @@ void Player::DrawSettings(int turn)
 	ss << setw(10) << left << "Power: " << setw(6) << power;
 	mvaddstr(line++, starting_column, ss.str().c_str());
 }
+
