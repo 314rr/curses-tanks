@@ -15,7 +15,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #endif
-
+	
 #include "ground.hpp"
 #include "player.hpp"
 
@@ -118,19 +118,19 @@ int main(int argc, char * argv[])
 			keep_going = false;
 			break;
 
-		case '<':
+		case KEY_DOWN:
 			players[turn].PowerDown();
 			break;
 
-		case '>':
+		case KEY_UP:
 			players[turn].PowerUp();
 			break;
 
-		case 'u':
+		case KEY_RIGHT:
 			players[turn].AngleUp();
 			break;
 
-		case 'd':
+		case KEY_LEFT:
 			players[turn].AngleDown();
 			break;
 
