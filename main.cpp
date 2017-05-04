@@ -85,9 +85,11 @@ void Shoot(Ground & g, Player * players, int turn)
 		if (pNy > g.ground.at((int)pNx))
 		{
 			getyx(stdscr,tanky,tankx);
-			if (players[1].Hit(tankx, g))
+			
+			if (players[0].Hit(5, g.ground.at(5), g))
 			{
-
+				cout << "HIT";
+				Sleep(1000);
 			}
 			break;
 		}
@@ -113,7 +115,7 @@ int main(int argc, char * argv[])
 	keypad(stdscr, 1);
 
 	g.InitializeGround();
-	players[0].Initialize(rand() % (COLS / 4), LEFT);
+	players[0].Initialize(5, LEFT);
 	players[1].Initialize(rand() % (COLS / 4) + 3 * COLS / 4 - 2, RIGHT);
 
 	DrawScreen(g, players, turn);
