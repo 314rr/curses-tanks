@@ -106,22 +106,24 @@ void Shoot(Ground & g, Player * players, int turn)
 			}*/
 			break;
 		}
-		if (players[LEFT].Hit((int)pNy, (int)pNx, g))
+		if (players[LEFT].Hit((int)pNx, (int)pNy, g))
 		{
 			cout << "IT WORKS";
 			Sleep(1000);
+			break;
 		}
-		if (players[RIGHT].Hit((int)pNy, (int)pNx, g))
+		if (players[RIGHT].Hit((int)pNx, (int)pNy, g))
 		{
 			cout << "IT WORKS";
 			Sleep(1000);
+			break;
 		}
 
 
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
 		refresh();
-		MySleep(50);
+		MySleep(25);
 	}
 }
 
