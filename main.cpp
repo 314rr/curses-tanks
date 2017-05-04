@@ -51,7 +51,6 @@ void DrawScreen(Ground & g, Player * players, int turn)
 void Shoot(Ground & g, Player * players, int turn)
 {
 
-	int tanky, tankx;
 	double angle = players[turn].angle / 180.0 * PI;
 	double y_component = sin(angle) * players[turn].power * 0.2;
 	double x_component = cos(angle) * players[turn].power * 0.2;
@@ -65,6 +64,20 @@ void Shoot(Ground & g, Player * players, int turn)
 
 	double p0x = players[turn].col;
 	double p0y = g.ground.at(players[turn].col);
+	int tx = players[turn].col;
+	int ty = g.ground.at(players[turn].col);
+	//int tx2 = 0;
+	//int ty2 = 0;
+	//if (turn == LEFT)
+	//{
+	//	int tx2 = players[RIGHT].col;
+	//	int ty2 = g.ground.at(players[RIGHT].col);
+	//}
+	//else
+	//{
+	//	int tx2 = players[LEFT].col;
+	//	int ty2 = g.ground.at(players[LEFT].col);
+	//}
 	// higher ground numbers are lower altitudes (0 is first line, etc).
 	p0y = LINES - p0y;
 	for (int i = 1; i < 5000; i++)
@@ -84,15 +97,27 @@ void Shoot(Ground & g, Player * players, int turn)
 		//		break;
 		if (pNy > g.ground.at((int)pNx))
 		{
-			getyx(stdscr,tanky,tankx);
-			
+
+			/*getyx(stdscr,tanky,tankx);
+
 			if (players[0].Hit(5, g.ground.at(5), g))
 			{
 				cout << "HIT";
 				Sleep(1000);
-			}
+			}*/
 			break;
 		}
+		if (players[LEFT].Hit((int)pNy, (int)pNx, g))
+		{
+			cout << "IT WORKS";
+			Sleep(1000);
+		}
+		if (players[RIGHT].Hit((int)pNy, (int)pNx, g))
+		{
+			cout << "IT WORKS";
+			Sleep(1000);
+		}
+
 
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
