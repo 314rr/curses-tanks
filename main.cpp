@@ -65,19 +65,7 @@ void Shoot(Ground & g, Player * players, int turn)
 	double p0y = g.ground.at(players[turn].col);
 	int tx = players[turn].col;
 	int ty = g.ground.at(players[turn].col);
-	//int tx2 = 0;
-	//int ty2 = 0;
-	//if (turn == LEFT)
-	//{
-	//	int tx2 = players[RIGHT].col;
-	//	int ty2 = g.ground.at(players[RIGHT].col);
-	//}
-	//else
-	//{
-	//	int tx2 = players[LEFT].col;
-	//	int ty2 = g.ground.at(players[LEFT].col);
-	//}
-	// higher ground numbers are lower altitudes (0 is first line, etc).
+	
 	p0y = LINES - p0y;
 	for (int i = 1; i < 5000; i++)
 	{
@@ -96,29 +84,21 @@ void Shoot(Ground & g, Player * players, int turn)
 		//		break;
 		if (pNy > g.ground.at((int)pNx))
 		{
-
-			/*getyx(stdscr,tanky,tankx);
-
-			if (players[0].Hit(5, g.ground.at(5), g))
+			break;
+		}
+		if (i  > 15)
+		{
+			if (players[LEFT].Hit((int)pNx, (int)pNy, g))
 			{
-				cout << "HIT";
-				Sleep(1000);
-			}*/
-			break;
+				players[RIGHT].score++;
+				break;
+			}
+			if (players[RIGHT].Hit((int)pNx, (int)pNy, g))
+			{
+				players[LEFT].score++;
+				break;
+			}
 		}
-		if (players[LEFT].Hit((int)pNx, (int)pNy, g))
-		{
-			cout << "IT WORKS";
-			Sleep(1000);
-			break;
-		}
-		if (players[RIGHT].Hit((int)pNx, (int)pNy, g))
-		{
-			cout << "IT WORKS";
-			Sleep(1000);
-			break;
-		}
-
 
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
@@ -141,8 +121,10 @@ int main(int argc, char * argv[])
 	keypad(stdscr, 1);
 
 	g.InitializeGround();
-	players[0].Initialize(5, LEFT);
+	players[0].Initialize(rand() % (COLS / 4), LEFT);
 	players[1].Initialize(rand() % (COLS / 4) + 3 * COLS / 4 - 2, RIGHT);
+	players[0].score = 0;
+	players[1].score = 0;
 
 	DrawScreen(g, players, turn);
 	while (keep_going)

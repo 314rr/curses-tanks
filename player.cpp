@@ -65,7 +65,9 @@ void Player::AngleDown()
 bool Player::Hit(int column, int row, Ground & g)
 {
 	bool retval = false;
-	if (col == column && g.ground.at(col) == row)
+	int length = 3;
+	int width = 3;
+	if ((col >= column  - 1 && col <= column + 1) && ((g.ground.at(col) >= row) && (g.ground.at(col) == row)))
 	{
 		retval = true;
 	}
@@ -99,6 +101,10 @@ void Player::DrawSettings(int turn)
 	
 	ss = stringstream();
 	ss << setw(10) << left << "Power: " << setw(6) << power;
+	mvaddstr(line++, starting_column, ss.str().c_str());
+
+	ss = stringstream();
+	ss << setw(10) << left << "Score: " << setw(6) << score;
 	mvaddstr(line++, starting_column, ss.str().c_str());
 }
 

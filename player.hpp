@@ -21,6 +21,7 @@ public:
 	bool Hit(int column, int row, Ground & g);
 
 	int col;
+	int score;
 	double power;
 	double angle;
 	Side s;
