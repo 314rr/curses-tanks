@@ -1,5 +1,4 @@
-//KYLE MADE A COMMENT
-// new comment
+//JORDAN'S AND KYLE'S FINAL PROJECT
 #include <iostream>
 #include <sstream>
 #include <iomanip>
