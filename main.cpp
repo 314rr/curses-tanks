@@ -90,12 +90,12 @@ void Shoot(Ground & g, Player * players, int turn)
 		{
 			if (players[LEFT].Hit((int)pNx, (int)pNy, g))
 			{
-				players[RIGHT].score++;
+				players[LEFT].lives--;
 				break;
 			}
 			if (players[RIGHT].Hit((int)pNx, (int)pNy, g))
 			{
-				players[LEFT].score++;
+				players[RIGHT].lives--;
 				break;
 			}
 		}
@@ -105,6 +105,7 @@ void Shoot(Ground & g, Player * players, int turn)
 		refresh();
 		MySleep(25);
 	}
+
 }
 
 int main(int argc, char * argv[])
@@ -123,8 +124,8 @@ int main(int argc, char * argv[])
 	g.InitializeGround();
 	players[0].Initialize(rand() % (COLS / 4), LEFT);
 	players[1].Initialize(rand() % (COLS / 4) + 3 * COLS / 4 - 2, RIGHT);
-	players[0].score = 0;
-	players[1].score = 0;
+	players[0].lives = 3;
+	players[1].lives = 3;
 
 	DrawScreen(g, players, turn);
 	while (keep_going)
