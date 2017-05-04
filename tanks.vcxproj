@@ -158,6 +158,7 @@
     <ClInclude Include="curses.h" />
     <ClInclude Include="ground.hpp" />
     <ClInclude Include="player.hpp" />
+    <ClInclude Include="Vec2d.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
