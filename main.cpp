@@ -98,6 +98,9 @@ void Shoot(Ground & g, Player * players, int turn)
 			if (players[RIGHT].Hit((int)pNx, (int)pNy, g))
 			{
 				players[RIGHT].lives--;
+				g = Ground(COLS);
+				players[0].Initialize(rand() % (COLS / 4), LEFT);
+				players[1].Initialize(rand() % (COLS / 4) + 3 * COLS / 4 - 2, RIGHT);
 				break;
 			}
 		}
@@ -132,7 +135,26 @@ int main(int argc, char * argv[])
 	DrawScreen(g, players, turn);
 	while (keep_going)
 	{
-	
+		if (players[LEFT].lives == 0 || players[RIGHT].lives == 0)
+		{
+			erase();
+			string s = "WOULD YOU LIKE TO CONTINUE (y/n)?";
+			move(LINES / 2 - (5), COLS / 2);
+			addstr(s.c_str());
+			refresh();
+			char a = getch();
+			if (a == 'y')
+			{
+				refresh();
+				players[LEFT].lives = 3;
+				players[RIGHT].lives = 3;
+				turn = 0;
+				DrawScreen(g,players,turn);
+			}
+			else
+				break;
+		}
+
 		bool show_char = false;
 		int c = getch();
 		switch (c)
@@ -174,26 +196,6 @@ int main(int argc, char * argv[])
 			ss << setw(4) << c << " ";
 			addstr(ss.str().c_str());
 			refresh();
-		}
-		if (players[LEFT].lives == 0 || players[RIGHT].lives == 0)
-		{
-			erase();
-			string s = "WOULD YOU LIKE TO CONTINUE (y/n)?";
-			move(LINES / 2 - (5), COLS / 2);
-			addstr(s.c_str());
-			refresh();
-			char a = getch();
-			if (a == 'y')
-			{
-				refresh();
-				players[LEFT].lives = 3;
-				players[RIGHT].lives = 3;
-				turn = 0;
-
-			}
-
-			else
-				break;
 		}
 	}
 	erase();
