@@ -151,11 +151,8 @@ int main(int argc, char * argv[])
 				turn = 0;
 				DrawScreen(g, players, turn);
 			}
-			if (a = 'n' || 'N')
-			{
-				break;
-			}
-			
+			else
+				break; 
 		} 
 		bool show_char = false;
 		int c = getch();
