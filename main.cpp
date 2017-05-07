@@ -132,7 +132,7 @@ int main(int argc, char * argv[])
 	players[0].lives = 3;
 	players[1].lives = 3;
 
-	DrawScreen(g, players, turn);
+	DrawScreen(g, players,turn);
 	while (keep_going)
 	{
 		if (players[LEFT].lives == 0 || players[RIGHT].lives == 0)
@@ -149,12 +149,14 @@ int main(int argc, char * argv[])
 				players[LEFT].lives = 3;
 				players[RIGHT].lives = 3;
 				turn = 0;
-				DrawScreen(g,players,turn);
+				DrawScreen(g, players, turn);
 			}
-			else
+			if (a = 'n' || 'N')
+			{
 				break;
-		}
-
+			}
+			
+		} 
 		bool show_char = false;
 		int c = getch();
 		switch (c)
@@ -190,7 +192,8 @@ int main(int argc, char * argv[])
 			break;
 		}
 		DrawScreen(g, players, turn);
-		if (show_char) {
+		if (show_char) 
+		{
 			move(0, 1);
 			stringstream ss;
 			ss << setw(4) << c << " ";
