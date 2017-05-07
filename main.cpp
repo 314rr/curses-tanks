@@ -159,6 +159,7 @@ int main(int argc, char * argv[])
 				addstr(s.c_str());
 				refresh();
 				getch();
+				exit(0); 
 			}
 			else
 				break; 
