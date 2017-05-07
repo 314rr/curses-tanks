@@ -153,6 +153,7 @@
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="Vec2d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="curses.h" />

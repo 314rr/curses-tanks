@@ -143,13 +143,22 @@ int main(int argc, char * argv[])
 			addstr(s.c_str());
 			refresh();
 			char a = getch();
-			if (a == 'y' || 'Y')
+			if (a == 'y' || a == 'Y')
 			{
 				refresh();
 				players[LEFT].lives = 3;
 				players[RIGHT].lives = 3;
 				turn = 0;
 				DrawScreen(g, players, turn);
+			}
+			else if (a == 'N' || a == 'n')
+			{
+				erase();
+				string s = "Thanks for playing! Press any key to exit!";
+				move(LINES / 2 - (5), COLS / 2);
+				addstr(s.c_str());
+				refresh();
+				getch();
 			}
 			else
 				break; 
