@@ -138,12 +138,12 @@ int main(int argc, char * argv[])
 		if (players[LEFT].lives == 0 || players[RIGHT].lives == 0)
 		{
 			erase();
-			string s = "WOULD YOU LIKE TO CONTINUE (y/n)?";
+			string s = "WOULD YOU LIKE TO PLAY AGAIN (y/n)?";
 			move(LINES / 2 - (5), COLS / 2);
 			addstr(s.c_str());
 			refresh();
 			char a = getch();
-			if (a == 'y')
+			if (a == 'y' || 'Y')
 			{
 				refresh();
 				players[LEFT].lives = 3;
