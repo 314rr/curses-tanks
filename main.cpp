@@ -139,17 +139,37 @@ int main(int argc, char * argv[])
 	keypad(stdscr, 1);
 	while (true)
 	{
-		string s = "Welcome to the Tank Game! Press I for information on how to play the game or press any key to continue!";
-		move(0,0);
+		string s = "Welcome to the Tank Game!";// Press I for information on how to play the game or press any key to continue!";
+		move(LINES / 4, (COLS - s.length()) / 2);
+		addstr(s.c_str());
+		s = "Press I for information";
+		move(LINES / 4 + 1, (COLS - s.length()) / 2 - 1);
+		addstr(s.c_str());
+		s = "Press any key to play";
+		move(LINES / 4 + 2, (COLS - s.length()) / 2 - 1);
+		addstr(s.c_str());
+		s = "Created by Jordan and Kyle";
+		move(3 *LINES / 4, (COLS - s.length()) / 2 - 1);
 		addstr(s.c_str());
 		refresh();
 		char a = getch();
 		if (a == 'i' || a == 'I')
 		{
 			erase();
-			string s = "The up and down keys control the power, The left and right keys control the angle. The spacebar is to shoot your bullet! Press any key to continue to the game!";
-			move(0,0);
+			//string s = "The up and down keys control the power, The left and right keys control the angle. The spacebar is to shoot your bullet! Press any key to continue to the game!";
+			string s = "The up and down keys control the power";
+			move(LINES / 4, (COLS - s.length()) / 2 - 3);
 			addstr(s.c_str());
+			s = "The left and right keys control the angle";
+			move(LINES / 4 + 1, (COLS - s.length()) / 2 -1);
+			addstr(s.c_str());
+			s = "The spacebar is to shoot your bullet!";
+			move(LINES / 4 + 2, (COLS - s.length()) / 2 - 3);
+			addstr(s.c_str());
+			s = "Press any key to continue to the game!";
+			move(3 * LINES / 4, (COLS - s.length()) / 2 - 1);
+			addstr(s.c_str());
+
 			refresh();
 			getch();
 			break;
@@ -169,9 +189,21 @@ int main(int argc, char * argv[])
 	{
 		if (players[LEFT].lives == 0 || players[RIGHT].lives == 0)
 		{
+			string winner;
+			if (players[LEFT].lives > players[RIGHT].lives)
+			{
+				winner = "Player 1";
+			}
+			else
+			{
+				winner = "Player 2";
+			}
 			erase();
-			string s = "WOULD YOU LIKE TO PLAY AGAIN (y/n)?";
-			move(0,0);
+			string s = "The winner is " + winner + "!";
+			move(LINES / 4, (COLS - s.length()) / 2);
+			addstr(s.c_str());
+			s = "Would you like to play again?(Y/N)";
+			move(LINES / 2, (COLS - s.length()) / 2);
 			addstr(s.c_str());
 			refresh();
 			char a = getch();
@@ -187,7 +219,7 @@ int main(int argc, char * argv[])
 			{
 				erase();
 				string s = "Thanks for playing! Press any key to exit!";
-				move(0,0);
+				move(LINES / 2, (COLS - s.length()) / 2);
 				addstr(s.c_str());
 				refresh();
 				getch();
