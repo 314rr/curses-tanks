@@ -151,7 +151,7 @@ int main(int argc, char * argv[])
 				turn = 0;
 				DrawScreen(g, players, turn);
 			}
-			else if (a == 'N' || a == 'n')
+			else if (a != 'y' || a != 'Y')
 			{
 				erase();
 				string s = "Thanks for playing! Press any key to exit!";
