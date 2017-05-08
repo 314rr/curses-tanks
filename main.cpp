@@ -135,7 +135,7 @@ int main(int argc, char * argv[])
 		if (a == 'i' || a == 'I')
 		{
 			erase();
-			string s = "The up and down key control the Power, The left and right keys control the angle. The spacebar is to shoot your bullet! Press any key to continue to the game!";
+			string s = "The up and down keys control the Power, The left and right keys control the angle. The spacebar is to shoot your bullet! Press any key to continue to the game!";
 			move(LINES / 2, COLS / 2 - 70);
 			addstr(s.c_str());
 			refresh();
