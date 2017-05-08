@@ -125,7 +125,27 @@ int main(int argc, char * argv[])
 	initscr();
 	noecho();
 	keypad(stdscr, 1);
-
+	while (true)
+	{
+		string s = "Welcome to the Tank Game! Press I for information on how to play the game or press any key to continue!";
+		move(LINES / 2 - (20), COLS / 2);
+		addstr(s.c_str());
+		refresh();
+		char a = getch();
+		if (a == 'i' || a == 'I')
+		{
+			erase();
+			string s = "The up and down key control the Power, The left and right keys control the angle. The spacebar is to shoot your bullet! Press any key to continue to the game!";
+			move(LINES / 2, COLS / 2 - 70);
+			addstr(s.c_str());
+			refresh();
+			getch();
+			break;
+		}
+		else if( a != 'i' || a != 'I')
+			break;
+	
+	}
 	g.InitializeGround();
 	players[0].Initialize(rand() % (COLS / 4), LEFT);
 	players[1].Initialize(rand() % (COLS / 4) + 3 * COLS / 4 - 2, RIGHT);
