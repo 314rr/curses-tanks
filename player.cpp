@@ -62,12 +62,12 @@ void Player::AngleDown()
 		angle = 0.0;
 }
 
-bool Player::Hit(int column, int row, Ground & g)
+bool Player::Hit(int column, int lines, Ground & g)
 {
 	bool retval = false;
 	int length = 3;
 	int width = 3;
-	if ((col >= column  - 1 && col <= column + 1) && ((g.ground.at(col) >= row) && (g.ground.at(col) == row)))
+	if ((col >= column  - 1 && col <= column + 1) && ((g.ground.at(col) >= lines) && (g.ground.at(col) <= lines + 1)))
 	{
 		retval = true;
 	}

@@ -59,3 +59,14 @@ void Ground::Draw()
 		mvaddch(ground.at(i), i + 1, '-');
 	}
 }
+void Ground::Explode(int position)
+{
+	if(ground.at(position) < LINES - 2)
+		ground.at(position)++;
+	
+	/*for (int i = -1; i < 2; i++)
+	{
+		if((ground.at(position + i - 1) - ground.at( position + i) <= 2) && ground.at(position + i) < LINES - 2)
+			ground.at(position + i)++;
+	}*/
+}

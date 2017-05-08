@@ -18,7 +18,7 @@ public:
 	void PowerDown();
 	void AngleUp();
 	void AngleDown();
-	bool Hit(int column, int row, Ground & g);
+	bool Hit(int column, int lines, Ground & g);
 
 	int col;
 	int lives;

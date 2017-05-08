@@ -17,6 +17,7 @@
 	
 #include "ground.hpp"
 #include "player.hpp"
+#include "Vec2d.hpp"
 
 using namespace std;
 
@@ -55,6 +56,7 @@ void Shoot(Ground & g, Player * players, int turn)
 	
 	double pNx;
 	double pNy;
+	Vec2d pN;
 	double time_divisor = 15.0;
 	
 	if (players[turn].s == RIGHT)
@@ -62,6 +64,13 @@ void Shoot(Ground & g, Player * players, int turn)
 
 	double p0x = players[turn].col;
 	double p0y = g.ground.at(players[turn].col);
+
+
+	Vec2d p0(double(g.ground.at(players[turn].col)), double(players[turn].col));
+	Vec2d force(y_component, x_component);
+	Vec2d gravity(0, -9.8);
+
+
 	int tx = players[turn].col;
 	int ty = g.ground.at(players[turn].col);
 	
@@ -69,6 +78,8 @@ void Shoot(Ground & g, Player * players, int turn)
 	for (int i = 1; i < 5000; i++)
 	{
 		double di = i / time_divisor;
+
+		pN = p0 + force * di + gravity * (di * di + di) * 0.5;
 
 		pNx = (int)(p0x + di * x_component);
 		pNy = p0y + di * y_component + (di * di + di) * -9.8 / time_divisor / 1.5;
@@ -83,8 +94,10 @@ void Shoot(Ground & g, Player * players, int turn)
 		//		break;
 		if (pNy > g.ground.at((int)pNx))
 		{
+			g.Explode((int)pNx);
 			break;
 		}
+
 		if (i  > 15)
 		{
 			if (players[LEFT].Hit((int)pNx, (int)pNy, g))
@@ -104,7 +117,6 @@ void Shoot(Ground & g, Player * players, int turn)
 				break;
 			}
 		}
-
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
 		refresh();
