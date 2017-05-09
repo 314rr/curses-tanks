@@ -86,7 +86,8 @@ void Shoot(Ground & g, Player * players, int turn)
 		pNy = (int)(LINES - pNy);
 		if (pNx < 1 || pNx >= COLS - 2)
 			break;
-		if (pNy < 1) {
+		if (pNy < 1) 
+		{
 			MySleep(50);
 			continue;
 		}
